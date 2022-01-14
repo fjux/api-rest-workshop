@@ -1,6 +1,5 @@
 package se.lexicon.erikalfredsson.apiworkshop.model.dto;
 
-import javax.persistence.Column;
 import java.time.LocalDate;
 
 public class LibraryUserDTO {

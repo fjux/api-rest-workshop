@@ -1,7 +1,9 @@
 package se.lexicon.erikalfredsson.apiworkshop.model.dto;
 
 import se.lexicon.erikalfredsson.apiworkshop.model.LibraryUser;
+import se.lexicon.erikalfredsson.apiworkshop.model.Loan;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 public class LoanDTO {

@@ -1,5 +1,6 @@
 package se.lexicon.erikalfredsson.apiworkshop.model.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 public class BookDTO {
@@ -7,7 +8,7 @@ public class BookDTO {
     private String title;
     private boolean available;
     private boolean reserved;
-    private int maxLoanDays;
+    private Integer maxLoanDays;
     private BigDecimal finePerDay;
     private String description;
 
