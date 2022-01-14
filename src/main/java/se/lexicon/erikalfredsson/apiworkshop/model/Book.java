@@ -34,6 +34,8 @@ public class Book {
         this.maxLoanDays = maxLoanDays;
         this.finePerDay = finePerDay;
         this.description = description;
+        setAvailable(true);
+        setReserved(false);
     }
 
     public String getBookId() {

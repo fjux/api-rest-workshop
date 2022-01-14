@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
@@ -35,13 +36,15 @@ public class Loan {
         this.loanTaker = loanTaker;
         if (book.isAvailable()){
             this.book = book;
-            this.loanDate = loanDate;
-            this.ended = ended;
+            book.setAvailable(false);
         } else {
             throw new IllegalArgumentException("The book " + book.getTitle() + " is not available");
         }
-
-
+            this.loanDate = loanDate;
+            this.ended = ended;
+            if (ended) {
+                book.setAvailable(true);
+            }
     }
 
     public LibraryUser getLoanTaker() {
@@ -65,7 +68,7 @@ public class Loan {
     }
 
     public void setEnded(boolean ended) {
-        this.ended = ended;
+            this.ended = ended;
     }
 
     public String getLoanId() {
@@ -105,34 +108,24 @@ public class Loan {
     }
 
     public boolean isOverdue() {
-        LocalDate dueDate = loanDate.plusDays(30);
-        LocalDate extendedDate = loanDate.plusDays(60);
-        LocalDate now = LocalDate.now();
-        if (now.isAfter(dueDate) && !extendLoan()){
-
-            return true;
-        } else if (extendLoan() && now.isAfter(extendedDate)){
-            return true;
-        }
-        return false;
+        LocalDate dueDate = loanDate.plusDays(book.getMaxLoanDays());
+        return LocalDate.now().isAfter(dueDate);
     }
 
-    public BigDecimal getFine(){
-        LocalDate dueDate = loanDate.plusDays(30);
-        LocalDate today = LocalDate.now();
-        long daysBetween = ChronoUnit.DAYS.between(dueDate, today);
-        BigDecimal fine = book.getFinePerDay();
-        BigDecimal days = BigDecimal.valueOf(daysBetween);
-        BigDecimal amountToPay;
+    public BigDecimal getFine() {
+        BigDecimal fine = BigDecimal.ZERO;
         if (isOverdue()) {
-            amountToPay = fine.multiply(days);
-            return amountToPay;
-        }
-        return BigDecimal.valueOf(0);
+            Period period = Period.between(loanDate.plusDays(book.getMaxLoanDays()), LocalDate.now());
+            long daysOverdue = period.getDays();
+            fine = BigDecimal.valueOf(book.getFinePerDay().longValue() * daysOverdue);
+            }
+        return fine;
+
     }
 
-    public boolean extendLoan(){
-        if (!getBook().isReserved()) {
+    public boolean extendLoan() {
+        if (!getBook().isReserved() && !getBook().isAvailable()) {
+            setLoanDate(loanDate.plusDays(30));
             return true;
         }
         return false;

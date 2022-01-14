@@ -40,22 +40,39 @@ class LoanTest {
 
     @BeforeEach
     void setUp() {
-        loan1 = loanRepository.save(loan1);
-        loan1 = loanRepository.save(loan1);
-        loan1 = loanRepository.save(loan1);
-        loan1 = loanRepository.save(loan1);
-        loan1 = loanRepository.save(loan1);
-    }
 
-    @Test
-    void isOverdue() {
-    }
-
-    @Test
-    void getFine() {
+        userOne = libraryUserRepository.save(userOne);
+        userTwo = libraryUserRepository.save(userTwo);
+        userThree = libraryUserRepository.save(userThree);
+        bookOne = bookRepository.save(bookOne);
+        bookTwo = bookRepository.save(bookTwo);
+        bookThree = bookRepository.save(bookThree);
+        bookFour = bookRepository.save(bookFour);
+        bookFive = bookRepository.save(bookFive);
+        loan1 = loanRepository.save(loan1);
+        loan2 = loanRepository.save(loan2);
+        loan3 = loanRepository.save(loan3);
+        loan4 = loanRepository.save(loan4);
+        loan5 = loanRepository.save(loan5);
     }
 
     @Test
     void extendLoan() {
+        bookOne.setReserved(true);
+        bookRepository.save(bookOne);
+        assertFalse(loan1.extendLoan());
+        assertTrue(loan2.extendLoan());
     }
+
+    @Test
+    void isOverdue() {
+        assertTrue(loan1.isOverdue());
+    }
+
+    @Test
+    void getFine() {
+        assertEquals(BigDecimal.valueOf(40), loan1.getFine());
+    }
+
+
 }
