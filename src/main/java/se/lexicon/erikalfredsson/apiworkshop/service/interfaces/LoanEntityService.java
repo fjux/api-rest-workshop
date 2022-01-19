@@ -1,6 +1,6 @@
 package se.lexicon.erikalfredsson.apiworkshop.service.interfaces;
 
-import se.lexicon.erikalfredsson.apiworkshop.model.Loan;
+import se.lexicon.erikalfredsson.apiworkshop.model.entity.Loan;
 import se.lexicon.erikalfredsson.apiworkshop.model.dto.LoanDTO;
 
 import java.util.List;

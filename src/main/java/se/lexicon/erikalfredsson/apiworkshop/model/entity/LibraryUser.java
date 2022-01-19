@@ -1,4 +1,4 @@
-package se.lexicon.erikalfredsson.apiworkshop.model;
+package se.lexicon.erikalfredsson.apiworkshop.model.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -41,12 +41,16 @@ public class LibraryUser {
         return regDate;
     }
 
+    public void setRegDate(LocalDate regDate) {
+        this.regDate = regDate;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String newName) {
-        this.name = newName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

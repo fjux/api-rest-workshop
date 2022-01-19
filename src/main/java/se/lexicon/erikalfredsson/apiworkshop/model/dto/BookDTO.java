@@ -8,7 +8,7 @@ public class BookDTO {
     private String title;
     private boolean available;
     private boolean reserved;
-    private Integer maxLoanDays;
+    private int maxLoanDays;
     private BigDecimal finePerDay;
     private String description;
 

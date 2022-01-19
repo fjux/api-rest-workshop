@@ -8,6 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import se.lexicon.erikalfredsson.apiworkshop.data.BookRepository;
 import se.lexicon.erikalfredsson.apiworkshop.data.LibraryUserRepository;
 import se.lexicon.erikalfredsson.apiworkshop.data.LoanRepository;
+import se.lexicon.erikalfredsson.apiworkshop.model.entity.Book;
+import se.lexicon.erikalfredsson.apiworkshop.model.entity.LibraryUser;
+import se.lexicon.erikalfredsson.apiworkshop.model.entity.Loan;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -24,11 +27,11 @@ class LoanTest {
     private Book bookThree = new Book("The Stand", 30, BigDecimal.valueOf(5.0), "The book revolves around a flu virus that is created by the American state. We get to meet people who try to live in a time of great crisis and survive with some sanity left");
     private Book bookFour = new Book("The Call of Cthulhu", 30, BigDecimal.valueOf(5.0), "Written by Howard Phillips Lovecraft. We get to follow some individuals that all get to witness parts of a mystery with extraterrestrial connotations. The first Person the reader gets to follow Francis Wayland Thurston and his investigations into some strange notes left behind by his great uncle.");
     private Book bookFive = new Book("The Blank slate", 30, BigDecimal.valueOf(5.0), "Written by Steven Pinker. Pinker argues that modern science has challenged three \"linked dogmas\" that constitute the dominant view of human nature in intellectual life: the blank slate (the mind has no innate traits)—empiricism, the noble savage (people are born good and corrupted by society)—romanticism, he ghost in the machine (each of us has a soul that makes choices free from biology)");
-    private Loan loan1 = new Loan(userOne, bookOne, LocalDate.parse("2021-12-07"), false);
-    private Loan loan2 = new Loan(userOne, bookTwo, LocalDate.parse("2022-01-02"), false);
-    private Loan loan3 = new Loan(userTwo, bookThree, LocalDate.parse("2020-03-15"), true);
-    private Loan loan4 = new Loan(userThree, bookFour, LocalDate.parse("2022-01-05"), false);
-    private Loan loan5 = new Loan(userThree, bookFive, LocalDate.parse("2021-01-10"), true);
+    private Loan loan1 = new Loan(userOne, bookOne, LocalDate.parse("2021-12-07"));
+    private Loan loan2 = new Loan(userOne, bookTwo, LocalDate.parse("2022-01-02"));
+    private Loan loan3 = new Loan(userTwo, bookThree, LocalDate.parse("2020-03-15"));
+    private Loan loan4 = new Loan(userThree, bookFour, LocalDate.parse("2022-01-05"));
+    private Loan loan5 = new Loan(userThree, bookFive, LocalDate.parse("2021-01-10"));
 
     @Autowired
     private LoanRepository loanRepository;

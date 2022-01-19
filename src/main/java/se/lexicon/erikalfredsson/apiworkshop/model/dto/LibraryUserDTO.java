@@ -11,6 +11,9 @@ public class LibraryUserDTO {
     public LibraryUserDTO() {
     }
 
+    public LibraryUserDTO(LocalDate regDate, String name, String email) {
+    }
+
     public String getUserId() {
         return userId;
     }

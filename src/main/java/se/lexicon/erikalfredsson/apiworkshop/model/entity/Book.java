@@ -1,4 +1,4 @@
-package se.lexicon.erikalfredsson.apiworkshop.model;
+package se.lexicon.erikalfredsson.apiworkshop.model.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 

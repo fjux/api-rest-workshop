@@ -1,15 +1,11 @@
 package se.lexicon.erikalfredsson.apiworkshop.model.dto;
 
-import se.lexicon.erikalfredsson.apiworkshop.model.LibraryUser;
-import se.lexicon.erikalfredsson.apiworkshop.model.Loan;
-
-import java.io.Serializable;
 import java.time.LocalDate;
 
 public class LoanDTO {
     private String loanId;
     private LibraryUserDTO loanTaker;
-    private BookDTO book;
+    private BookDTO bookDTO;
     private LocalDate loanDate;
     private boolean ended;
 
@@ -32,12 +28,12 @@ public class LoanDTO {
         this.loanTaker = loanTaker;
     }
 
-    public BookDTO getBook() {
-        return book;
+    public BookDTO getBookDTO() {
+        return bookDTO;
     }
 
-    public void setBook(BookDTO book) {
-        this.book = book;
+    public void setBookDTO(BookDTO bookDTO) {
+        this.bookDTO = bookDTO;
     }
 
     public LocalDate getLoanDate() {

@@ -1,4 +1,4 @@
-package se.lexicon.erikalfredsson.apiworkshop.model;
+package se.lexicon.erikalfredsson.apiworkshop.model.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 import static se.lexicon.erikalfredsson.apiworkshop.model.constants.EntityConstants.GENERATOR;
@@ -32,7 +31,7 @@ public class Loan {
     public Loan() {
     }
 
-    public Loan(LibraryUser loanTaker, Book book, LocalDate loanDate, boolean ended) {
+    public Loan(LibraryUser loanTaker, Book book, LocalDate loanDate) {
         this.loanTaker = loanTaker;
         if (book.isAvailable()){
             this.book = book;
@@ -41,10 +40,7 @@ public class Loan {
             throw new IllegalArgumentException("The book " + book.getTitle() + " is not available");
         }
             this.loanDate = loanDate;
-            this.ended = ended;
-            if (ended) {
-                book.setAvailable(true);
-            }
+            ended = false;
     }
 
     public LibraryUser getLoanTaker() {
@@ -68,12 +64,15 @@ public class Loan {
     }
 
     public void setEnded(boolean ended) {
+        if (ended)
+            book.setAvailable(true);
             this.ended = ended;
     }
 
     public String getLoanId() {
         return loanId;
     }
+
 
     public LocalDate getLoanDate() {
         return loanDate;
